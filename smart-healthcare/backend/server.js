@@ -194,6 +194,14 @@ app.put("/api/admin/doctor/reject/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to reject doctor" });
   }
 });
+app.get("/api/approved-doctors", async (req, res) => {
+  try {
+    const doctors = await Doctor.find({ status: "Approved" });
+    res.json(doctors);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching doctors" });
+  }
+});
 
 
 
